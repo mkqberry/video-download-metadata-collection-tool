@@ -1,4 +1,4 @@
-# Youtube Downloader
+# Video Download and Metadata Collection Tool
 
 This repository contains a sanitized Python project prepared for public open-source release.
 
