@@ -1,31 +1,47 @@
-# Video Download and Metadata Collection Tool
+# YouTube Downloader
 
-This repository contains a sanitized Python project prepared for public open-source release.
+Download YouTube videos with Turkish subtitles at scale. Built for acquiring speech and language data, with support for cookies, auto-retry, and concurrent downloads.
 
 ## Features
 
-- Modular source code under `src/`
-- Runnable utilities under `scripts/`
-- Config templates under `configs/`
-- Examples and tests directories for extensibility
+- Turkish subtitle extraction
+- Concurrent downloads (configurable worker count)
+- Graceful interrupt handling
+- Cookie/authentication support
+- Detailed progress tracking
+- Auto-caption fallback
+- Structured error reporting
 
 ## Setup
 
-1. Create a virtual environment.
-2. Install dependencies:
-   - `pip install -r requirements.txt`
-3. Copy `.env.example` to `.env` and fill values.
+```bash
+pip install -r requirements.txt
+cp .env.example .env
+```
 
 ## Usage
 
-Run:
+Download from a list of video URLs:
 
-`python scripts/run_pipeline.py`
+```bash
+python scripts/main.py --input-file videos.txt --output-dir ./downloads
+```
 
-## Folder Structure
+With optional Turkish subtitles and auto-captions:
 
-- `src/` core logic
-- `scripts/` runnable scripts
-- `configs/` configuration files
-- `examples/` usage examples
-- `tests/` tests
+```bash
+python scripts/main.py \
+  --input-file videos.txt \
+  --output-dir ./downloads \
+  --allow-auto-subs \
+  --workers 4
+```
+
+Input file format: One video ID or URL per line.
+
+## Configuration
+
+Edit `.env` to set:
+- `YT_COOKIES_FILE` - Browser cookies export
+- `WORKER_COUNT` - Concurrent downloads
+- `TIMEOUT` - Download timeout in seconds
